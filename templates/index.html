@@ -1,87 +1,331 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Moderno | BitAnkor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            800: '#0f172a',
+                        },
+                        accent: {
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                        },
+                        cyan: {
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-primary-800 text-gray-200 font-sans">
+    <!-- Header/Navbar -->
+    <header class="fixed w-full bg-primary-800/90 backdrop-blur z-50 border-b border-white/10">
+        <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold">
+                <span class="bg-gradient-to-r from-accent-500 to-cyan-400 bg-clip-text text-transparent">BitAnkor</span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#inicio" class="hover:text-accent-400 transition">Inicio</a>
+                <a href="#tecnologias" class="hover:text-accent-400 transition">Tecnologías</a>
+                <a href="#proyectos" class="hover:text-accent-400 transition">Proyectos</a>
+                <a href="#sobre-mi" class="hover:text-accent-400 transition">Sobre mí</a>
+                <a href="#contacto" class="hover:text-accent-400 transition">Contacto</a>
+            </div>
+            <button class="md:hidden text-xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
 
-{% block content %}
-<!-- Header/Navbar -->
-<header class="fixed w-full bg-primary-800/90 backdrop-blur z-50 border-b border-white/10">
-    <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <a href="/" class="text-2xl font-bold">
-            <span class="bg-gradient-to-r from-accent-500 to-cyan-400 bg-clip-text text-transparent">BitAnkor</span>
-        </a>
-        <div class="hidden md:flex space-x-8">
-            <a href="#inicio" class="hover:text-accent-400 transition">Inicio</a>
-            <a href="#tecnologias" class="hover:text-accent-400 transition">Tecnologías</a>
-            <a href="#proyectos" class="hover:text-accent-400 transition">Proyectos</a>
-            <a href="#sobre-mi" class="hover:text-accent-400 transition">Sobre mí</a>
-            <a href="#contacto" class="hover:text-accent-400 transition">Contacto</a>
-        </div>
-        <button class="md:hidden text-xl">
-            <i class="fas fa-bars"></i>
-        </button>
-    </nav>
-</header>
-
-<!-- Resto de tu plantilla index.html (igual que el original) -->
-<!-- Solo asegúrate de usar las variables de Jinja2 para los proyectos -->
-<section id="proyectos" class="py-20 px-6 bg-primary-800/50">
-    <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl font-bold mb-4">Proyectos Destacados</h2>
-            <div class="w-20 h-1 bg-gradient-to-r from-accent-500 to-cyan-500 mx-auto"></div>
-        </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {% for project in projects %}
-            <div class="bg-white/5 rounded-xl overflow-hidden border border-white/10 hover:shadow-lg transition hover:-translate-y-2">
-                <div class="h-48 bg-gradient-to-br from-accent-500 to-cyan-500 flex items-center justify-center">
-                    <img src="{{ url_for('static', path='images/' + project.image) }}" 
-                         alt="{{ project.title }}" class="w-full h-full object-cover">
+    <!-- Hero Section -->
+    <section id="inicio" class="min-h-screen pt-32 pb-20 px-6 flex items-center justify-center">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="w-32 h-32 mx-auto mb-8 rounded-full bg-gradient-to-br from-accent-500 to-cyan-500 p-1">
+                <div class="w-full h-full rounded-full bg-primary-800 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" 
+                         alt="BitAnkor" class="w-full h-full object-cover">
                 </div>
-                <div class="p-6 text-left">
-                    <h3 class="text-xl font-bold mb-2">{{ project.title }}</h3>
-                    <p class="text-gray-400 text-sm mb-4">{{ project.description }}</p>
-                    <div class="flex gap-2 flex-wrap text-xs mb-4">
-                        {% for tech in project.technologies %}
-                        <span class="px-3 py-1 rounded-full bg-accent-500/20 text-accent-400">{{ tech }}</span>
-                        {% endfor %}
+            </div>
+            <h1 class="text-5xl font-bold mb-6">
+                <span class="bg-gradient-to-r from-accent-500 to-cyan-400 bg-clip-text text-transparent">BitAnkor</span>
+            </h1>
+            <h2 class="text-2xl text-gray-400 mb-6">Full Stack Developer</h2>
+            <p class="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
+                Especializado en desarrollo web moderno con enfoque en soluciones escalables, APIs robustas e integración de IA.
+            </p>
+            <div class="flex gap-4 justify-center">
+                <a href="#proyectos" class="bg-accent-500 px-6 py-3 rounded-lg text-white hover:bg-accent-600 transition">
+                    Ver Proyectos
+                </a>
+                <a href="#contacto" class="px-6 py-3 rounded-lg border border-white/20 hover:bg-white/5 transition">
+                    Contactar
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Mí -->
+    <section id="sobre-mi" class="py-20 px-6 bg-primary-800/50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Sobre mí</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-accent-500 to-cyan-500 mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">¡Hola! Soy BitAnkor</h3>
+                    <p class="text-gray-400 mb-4">
+                        Desarrollador Full Stack con más de 5 años de experiencia creando aplicaciones web modernas y eficientes.
+                    </p>
+                    <p class="text-gray-400 mb-6">
+                        Me apasiona resolver problemas complejos mediante código limpio y arquitecturas escalables, con especial interés en la integración de inteligencia artificial en aplicaciones web.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 rounded-full bg-accent-500 mr-3"></div>
+                            <span class="text-gray-300">Full Stack</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 rounded-full bg-cyan-500 mr-3"></div>
+                            <span class="text-gray-300">APIs</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 rounded-full bg-accent-500 mr-3"></div>
+                            <span class="text-gray-300">IA Integrada</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 rounded-full bg-cyan-500 mr-3"></div>
+                            <span class="text-gray-300">DevOps</span>
+                        </div>
                     </div>
-                    <div class="flex justify-between items-center">
-                        <a href="#" class="text-sm text-accent-400 hover:text-accent-300 transition">Ver detalles →</a>
-                        <a href="#" class="text-sm flex items-center">
-                            <i class="fab fa-github mr-1"></i> Código
-                        </a>
+                    <a href="#" class="inline-flex items-center text-accent-400 hover:text-accent-300 transition">
+                        <span>Descargar CV</span>
+                        <i class="fas fa-download ml-2"></i>
+                    </a>
+                </div>
+                <div class="bg-white/5 backdrop-blur p-8 rounded-xl border border-white/10">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white/5 p-4 rounded-lg border border-white/10">
+                            <div class="text-3xl font-bold mb-2 text-accent-400">5+</div>
+                            <div class="text-gray-400 text-sm">Años de experiencia</div>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-lg border border-white/10">
+                            <div class="text-3xl font-bold mb-2 text-cyan-400">20+</div>
+                            <div class="text-gray-400 text-sm">Proyectos completados</div>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-lg border border-white/10">
+                            <div class="text-3xl font-bold mb-2 text-accent-400">100%</div>
+                            <div class="text-gray-400 text-sm">Satisfacción clientes</div>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-lg border border-white/10">
+                            <div class="text-3xl font-bold mb-2 text-cyan-400">10+</div>
+                            <div class="text-gray-400 text-sm">Tecnologías dominadas</div>
+                        </div>
                     </div>
                 </div>
             </div>
-            {% endfor %}
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Formulario de contacto actualizado para FastAPI -->
-<section id="contacto" class="py-20 px-6">
-    <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl font-bold mb-4">Contacto</h2>
-            <div class="w-20 h-1 bg-gradient-to-r from-accent-500 to-cyan-500 mx-auto"></div>
-            {% if request.query_params.get('message') == 'success' %}
-            <div class="mt-4 p-4 bg-green-500/20 text-green-400 rounded-lg">
-                ¡Mensaje enviado con éxito!
+    <!-- Tecnologías -->
+    <section id="tecnologias" class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Tecnologías</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-accent-500 to-cyan-500 mx-auto"></div>
             </div>
-            {% endif %}
-        </div>
-        <div class="bg-white/5 backdrop-blur rounded-xl border border-white/10 p-8">
-            <form method="post" action="/contact" class="grid md:grid-cols-2 gap-6">
-                <div class="space-y-1">
-                    <label for="name" class="text-sm text-gray-400">Nombre</label>
-                    <input type="text" id="name" name="name" required class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent-500 transition">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                {% for tech in ['python', 'fastapi', 'tailwindcss', 'javascript', 'docker', 'react', 'nodejs', 'postgresql', 'git', 'aws', 'flask', 'typescript'] %}
+                <div class="bg-white/5 backdrop-blur p-6 rounded-xl border border-white/10 hover:border-accent-500/50 transition group">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/{{ tech }}/{{ tech }}-original.svg" 
+                         class="w-12 h-12 mx-auto mb-2 group-hover:scale-110 transition" alt="{{ tech }}">
+                    <p class="text-sm mt-2 capitalize text-center">{{ tech }}</p>
                 </div>
-                <!-- Resto del formulario -->
-                <div class="md:col-span-2">
-                    <button type="submit" class="w-full bg-accent-500 px-6 py-3 rounded-lg text-white hover:bg-accent-600 transition font-medium">
-                        Enviar Mensaje
-                    </button>
-                </div>
-            </form>
+                {% endfor %}
+            </div>
         </div>
-    </div>
-</section>
-{% endblock %}
+    </section>
+
+    <!-- Proyectos -->
+    <section id="proyectos" class="py-20 px-6 bg-primary-800/50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Proyectos Destacados</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-accent-500 to-cyan-500 mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Proyecto 1 -->
+                <div class="bg-white/5 rounded-xl overflow-hidden border border-white/10 hover:shadow-lg transition hover:-translate-y-2">
+                    <div class="h-48 bg-gradient-to-br from-accent-500 to-cyan-500 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="AI Dev Bro" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 text-left">
+                        <h3 class="text-xl font-bold mb-2">AI Dev Bro</h3>
+                        <p class="text-gray-400 text-sm mb-4">Asistente de IA personalizado para desarrolladores con integración de OpenAI y soporte para múltiples lenguajes.</p>
+                        <div class="flex gap-2 flex-wrap text-xs mb-4">
+                            <span class="px-3 py-1 rounded-full bg-accent-500/20 text-accent-400">FastAPI</span>
+                            <span class="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400">Tailwind</span>
+                            <span class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-400">OpenAI</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="text-sm text-accent-400 hover:text-accent-300 transition">Ver detalles →</a>
+                            <a href="#" class="text-sm flex items-center">
+                                <i class="fab fa-github mr-1"></i> Código
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 2 -->
+                <div class="bg-white/5 rounded-xl overflow-hidden border border-white/10 hover:shadow-lg transition hover:-translate-y-2">
+                    <div class="h-48 bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="E-commerce API" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 text-left">
+                        <h3 class="text-xl font-bold mb-2">E-commerce API</h3>
+                        <p class="text-gray-400 text-sm mb-4">Plataforma de comercio electrónico escalable con sistema de pagos, carrito y recomendaciones basadas en IA.</p>
+                        <div class="flex gap-2 flex-wrap text-xs mb-4">
+                            <span class="px-3 py-1 rounded-full bg-green-500/20 text-green-400">Node.js</span>
+                            <span class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400">MongoDB</span>
+                            <span class="px-3 py-1 rounded-full bg-yellow-500/20 text-yellow-400">Stripe</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="text-sm text-accent-400 hover:text-accent-300 transition">Ver detalles →</a>
+                            <a href="#" class="text-sm flex items-center">
+                                <i class="fab fa-github mr-1"></i> Código
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 3 -->
+                <div class="bg-white/5 rounded-xl overflow-hidden border border-white/10 hover:shadow-lg transition hover:-translate-y-2">
+                    <div class="h-48 bg-gradient-to-br from-amber-500 to-red-500 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1415&q=80" 
+                             alt="Analytics Dashboard" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 text-left">
+                        <h3 class="text-xl font-bold mb-2">Analytics Dashboard</h3>
+                        <p class="text-gray-400 text-sm mb-4">Panel de análisis de datos en tiempo real con visualizaciones interactivas y predicciones mediante machine learning.</p>
+                        <div class="flex gap-2 flex-wrap text-xs mb-4">
+                            <span class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400">React</span>
+                            <span class="px-3 py-1 rounded-full bg-pink-500/20 text-pink-400">Python</span>
+                            <span class="px-3 py-1 rounded-full bg-orange-500/20 text-orange-400">TensorFlow</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="text-sm text-accent-400 hover:text-accent-300 transition">Ver detalles →</a>
+                            <a href="#" class="text-sm flex items-center">
+                                <i class="fab fa-github mr-1"></i> Código
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center px-6 py-3 border border-white/20 rounded-lg hover:bg-white/5 transition">
+                    <span>Ver todos los proyectos</span>
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Contacto</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-accent-500 to-cyan-500 mx-auto"></div>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
+                    ¿Interesado en trabajar juntos? Contáctame y hablemos sobre cómo puedo ayudar en tu próximo proyecto.
+                </p>
+            </div>
+            <div class="bg-white/5 backdrop-blur rounded-xl border border-white/10 p-8">
+                <form class="grid md:grid-cols-2 gap-6">
+                    <div class="space-y-1">
+                        <label for="name" class="text-sm text-gray-400">Nombre</label>
+                        <input type="text" id="name" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent-500 transition">
+                    </div>
+                    <div class="space-y-1">
+                        <label for="email" class="text-sm text-gray-400">Email</label>
+                        <input type="email" id="email" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent-500 transition">
+                    </div>
+                    <div class="md:col-span-2 space-y-1">
+                        <label for="subject" class="text-sm text-gray-400">Asunto</label>
+                        <input type="text" id="subject" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent-500 transition">
+                    </div>
+                    <div class="md:col-span-2 space-y-1">
+                        <label for="message" class="text-sm text-gray-400">Mensaje</label>
+                        <textarea id="message" rows="5" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent-500 transition"></textarea>
+                    </div>
+                    <div class="md:col-span-2">
+                        <button type="submit" class="w-full bg-accent-500 px-6 py-3 rounded-lg text-white hover:bg-accent-600 transition font-medium">
+                            Enviar Mensaje
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="flex flex-wrap justify-center gap-8 mt-12">
+                <a href="mailto:bitankor@ejemplo.com" class="flex items-center text-gray-400 hover:text-accent-400 transition">
+                    <i class="fas fa-envelope mr-2 text-xl"></i>
+                    bitankor@ejemplo.com
+                </a>
+                <a href="#" class="flex items-center text-gray-400 hover:text-accent-400 transition">
+                    <i class="fab fa-github mr-2 text-xl"></i>
+                    github.com/bitankor
+                </a>
+                <a href="#" class="flex items-center text-gray-400 hover:text-accent-400 transition">
+                    <i class="fab fa-linkedin mr-2 text-xl"></i>
+                    linkedin.com/in/bitankor
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 border-t border-white/10">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-xl font-bold mb-4 md:mb-0">
+                    <span class="bg-gradient-to-r from-accent-500 to-cyan-400 bg-clip-text text-transparent">BitAnkor</span>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-accent-400 transition text-xl">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-accent-400 transition text-xl">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-accent-400 transition text-xl">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-accent-400 transition text-xl">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-6 text-center md:text-left text-sm text-gray-500">
+                &copy; 2023 BitAnkor. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón flotante -->
+    <a href="#" class="fixed bottom-6 right-6 w-12 h-12 bg-accent-500 rounded-full flex items-center justify-center text-white shadow-lg hover:bg-accent-600 transition">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</body>
+</html>
