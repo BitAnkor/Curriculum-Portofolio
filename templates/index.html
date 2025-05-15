@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Header/Navbar -->
+<header class="fixed w-full bg-primary-800/90 backdrop-blur z-50 border-b border-white/10">
+    <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <a href="/" class="text-2xl font-bold">
+            <span class="bg-gradient-to-r from-accent-500 to-cyan-400 bg-clip-text text-transparent">BitAnkor</span>
+        </a>
+        <div class="hidden md:flex space-x-8">
+            <a href="#inicio" class="hover:text-accent-400 transition">Inicio</a>
+            <a href="#tecnologias" class="hover:text-accent-400 transition">Tecnologías</a>
+            <a href="#proyectos" class="hover:text-accent-400 transition">Proyectos</a>
+            <a href="#sobre-mi" class="hover:text-accent-400 transition">Sobre mí</a>
+            <a href="#contacto" class="hover:text-accent-400 transition">Contacto</a>
+        </div>
+        <button class="md:hidden text-xl">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+</header>
+
+<!-- Resto de tu plantilla index.html (igual que el original) -->
+<!-- Solo asegúrate de usar las variables de Jinja2 para los proyectos -->
+<section id="proyectos" class="py-20 px-6 bg-primary-800/50">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold mb-4">Proyectos Destacados</h2>
+            <div class="w-20 h-1 bg-gradient-to-r from-accent-500 to-cyan-500 mx-auto"></div>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for project in projects %}
+            <div class="bg-white/5 rounded-xl overflow-hidden border border-white/10 hover:shadow-lg transition hover:-translate-y-2">
+                <div class="h-48 bg-gradient-to-br from-accent-500 to-cyan-500 flex items-center justify-center">
+                    <img src="{{ url_for('static', path='images/' + project.image) }}" 
+                         alt="{{ project.title }}" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6 text-left">
+                    <h3 class="text-xl font-bold mb-2">{{ project.title }}</h3>
+                    <p class="text-gray-400 text-sm mb-4">{{ project.description }}</p>
+                    <div class="flex gap-2 flex-wrap text-xs mb-4">
+                        {% for tech in project.technologies %}
+                        <span class="px-3 py-1 rounded-full bg-accent-500/20 text-accent-400">{{ tech }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <a href="#" class="text-sm text-accent-400 hover:text-accent-300 transition">Ver detalles →</a>
+                        <a href="#" class="text-sm flex items-center">
+                            <i class="fab fa-github mr-1"></i> Código
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Formulario de contacto actualizado para FastAPI -->
+<section id="contacto" class="py-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold mb-4">Contacto</h2>
+            <div class="w-20 h-1 bg-gradient-to-r from-accent-500 to-cyan-500 mx-auto"></div>
+            {% if request.query_params.get('message') == 'success' %}
+            <div class="mt-4 p-4 bg-green-500/20 text-green-400 rounded-lg">
+                ¡Mensaje enviado con éxito!
+            </div>
+            {% endif %}
+        </div>
+        <div class="bg-white/5 backdrop-blur rounded-xl border border-white/10 p-8">
+            <form method="post" action="/contact" class="grid md:grid-cols-2 gap-6">
+                <div class="space-y-1">
+                    <label for="name" class="text-sm text-gray-400">Nombre</label>
+                    <input type="text" id="name" name="name" required class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent-500 transition">
+                </div>
+                <!-- Resto del formulario -->
+                <div class="md:col-span-2">
+                    <button type="submit" class="w-full bg-accent-500 px-6 py-3 rounded-lg text-white hover:bg-accent-600 transition font-medium">
+                        Enviar Mensaje
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

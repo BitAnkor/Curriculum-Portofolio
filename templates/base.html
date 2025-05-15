@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}BitAnkor - Portafolio{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            800: '#0f172a',
+                        },
+                        accent: {
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                        },
+                        cyan: {
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-primary-800 text-gray-200 font-sans">
+    {% block content %}{% endblock %}
+    
+    <!-- Botón flotante -->
+    <a href="#" class="fixed bottom-6 right-6 w-12 h-12 bg-accent-500 rounded-full flex items-center justify-center text-white shadow-lg hover:bg-accent-600 transition">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</body>
+</html>
