@@ -4,6 +4,9 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse, RedirectResponse
 from pathlib import Path
 import os
+from fastapi import FastAPI, Request
+from utils.github import obtener_proyectos
+
 
 app = FastAPI(title="BitAnkor Portfolio", version="1.0.0")
 
@@ -11,7 +14,7 @@ app = FastAPI(title="BitAnkor Portfolio", version="1.0.0")
 BASE_DIR = Path(__file__).parent
 app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
 templates = Jinja2Templates(directory=BASE_DIR / "templates")
-
+        
 # Datos de ejemplo para proyectos
 PROJECTS_DATA = [
     {
@@ -31,11 +34,12 @@ PROJECTS_DATA = [
 ]
 
 # Rutas de la API
-@app.get("/", response_class=HTMLResponse)
-async def read_root(request: Request):
+@app.get("/")
+async def index(request: Request):
+    proyectos = await obtener_proyectos()
     return templates.TemplateResponse("index.html", {
         "request": request,
-        "projects": PROJECTS_DATA
+        "proyectos": proyectos
     })
 
 @app.post("/contact", response_class=HTMLResponse)
